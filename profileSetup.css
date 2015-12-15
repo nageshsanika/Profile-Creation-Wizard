@@ -1,0 +1,92 @@
+
+.modal-backdrop {
+    background-color:black;
+}
+* {
+    z-index:0!important;
+}
+.modal-content {
+    border-radius:0px;
+}
+.modal-body {
+    max-height:100%;
+    min-height:300px;
+}
+.modal-body p input[type=text] {
+    border:0px;
+	padding-left:5px;
+    border-bottom:1px solid green;
+    outline:0px;
+    color:blue;
+    font-weight:bold;
+}
+
+.badge{
+margin:4px;
+color:white;
+}
+.btn{
+margin:4px;
+}
+#profile-next-button{
+padding:1px;
+width:50px;
+} 
+.modal-footer{
+padding:1px;
+}
+.modal-body{
+text-align:center;
+} 
+.form-control{
+border-radius:0;
+text-align:center;
+color:blue;
+font-weight:bold;
+}
+.tile {
+  width: 98%;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.tile .title {
+  margin-top: 0px;
+}
+.tile .blue{
+	color: green;
+}
+.tile.blue {
+	background: #f2f2f2;
+}
+.tile.blue:hover {
+	background: #D6D6C2;
+} 
+ 
+#box{  
+	background:url("male-avatar.png");
+	background-repeat:no-repeat;  
+	background-position: center;
+}
+
+#overlay_{
+	background:rgba(0,0,0,.75);
+	text-align:center;
+	padding:20% 0 25% 0;
+	opacity:0;
+	-webkit-transition: opacity .25s ease;
+	-moz-transition: opacity .25s ease;
+} 
+#box:hover #overlay_ {
+   opacity:1;
+} 
+#choose_picture{    
+   font-size:20px;
+   color:white;
+   font-weight:boldz-index:9999;
+} 
+.btn-success{
+margin-left:5px;
+}

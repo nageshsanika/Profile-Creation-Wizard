@@ -1,0 +1,350 @@
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="ProfileWizard.css' rel='stylesheet" type="text/css">
+
+<div class="modal fade" id="myModal" data-backdrop="static">
+	<div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header modal-title">
+			<h4 id='header-info'>Welcome <b class='text-warning'>User</b>. <font class='text-info' >Lets Get Started!</font></h4>
+        </div> 
+        <div class="modal-body">   		
+			
+			<br/>
+			<br/> 
+			
+        </div>
+        <div class="modal-footer"> 
+			<h4 class='pull-left text-warning' style='margin-left:10px;'><b id='percentOfComplete'>0%</b> Completed</h4>
+			<a class="btn" id='profile-skip-button' onclick='skipThisSection(2)'>Skip</a> 
+			<a class="btn btn-primary btn-sm" id='profile-next-button' onclick='nextTabToSave(2,"CompanyDetails")'>Save</a>
+			<br/>
+			<br/>
+			<div class="progress modal-title">
+			  <div class="progress-bar progress-bar-striped active" id='current-info-bar' role="progressbar" style="width:20%">
+				Current Information
+			  </div>
+			  <div class="progress-bar progress-bar-striped" id='contact-bar'role="progressbar" style="width:20%">
+				Contact
+			  </div>
+			  <div class="progress-bar progress-bar-striped" id='about-bar' role="progressbar" style="width:20%">
+				About
+			  </div>
+			  <div class="progress-bar progress-bar-striped" id='skill-bar' role="progressbar" style="width:20%">
+				Skills
+			  </div> 
+			  <div class="progress-bar progress-bar-striped" id='suggestions-bar' role="progressbar" style="width:20%">
+				Suggestions
+			  </div>
+			</div>  
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Div For Basic Info-->
+<div id='section-1' class='sections' >
+	<h4>What is your Current Company</h4>
+	<br/>
+	<div class='row'>
+		<div class='col-md-1'></div>
+		<div class='col-md-10'>
+			<input type='text' id='current_company' class='form-control' placeholder='Ex: xyz'/>
+		</div>
+		<div class='col-md-1'></div>
+	</div>
+	<br/>
+	<h4>What Role do you Play</h4>
+	<br/>
+	<div class='row'>
+		<div class='col-md-1'></div>
+		<div class='col-md-10'>
+			<input type='text' id='current_role' class='form-control' placeholder='Ex: Sr. Software Engineer'/>
+		</div>
+		<div class='col-md-1'></div>
+	</div>
+</div>
+<!-- Div For Contact Info-->
+<div id='section-2' class='sections'>
+	<h4>What is your Current Location</h4>
+	<br/>
+	<div class='row'>
+			<div class='col-md-1'></div>
+			<div class='col-md-10'>
+				<input type='text' id='CurrentLocation' class='form-control' placeholder='Ex: Hyderabad' />
+			</div>
+			<div class='col-md-1'></div>
+	</div>
+	<br/>
+	<h4>What is your Mobile Number</h4>
+	<br/>
+	<div class='row'>
+		<div class='col-md-1'></div>
+		<div class='col-md-10'>
+			<input type='text' id='MobileNumber' class='form-control' placeholder='Ex: 9999999999' />
+		</div>
+		<div class='col-md-1'></div>
+	</div>
+</div>
+<!-- Div For about -->
+<div id='section-3' class='sections'> 
+	<div class='row'>
+		<div class='col-md-6' style='border-right:1px solid grey'>
+			<h4>Some words About You</h4>
+			<br/>
+			<div class='row'>
+					<div class='col-md-1'></div>
+					<div class='col-md-10'>
+						<textarea class='form-control' id='about_you' placeholder='Ex: JavaScript Enthusiast, Looking for Challenging Position in Product Startup' rows='9'></textarea>
+					</div>
+					<div class='col-md-1'></div>
+			</div>
+		</div>
+		<div class='col-md-6'>
+			<h4>Lovely Picture of you</h4>
+			<br/>
+			<div class='row'> 
+				<div style='display:none;'>
+					<input type='file' id='choose_picture_input' onchange='uploadPICImmediately(this)'  />
+				</div>
+				<div class='col-md-1'></div>
+				<div class='col-md-10 image-upload-col' id='box' onclick='openFILEINPUT()'> 
+					<div id="overlay_">
+						<span id="choose_picture" ><span class='glyphicon glyphicon-camera'> </span> Choose Picture</span>
+					</div>
+				</div>
+				<div class='col-md-1'></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Div For Skill set -->
+<div id='section-4' class='sections'> 
+	<p class='existing-skills'> 
+		<span class='btn btn-primary' onclick='selectSkill(this,1);' > JavaScript</span>  
+		<span class='btn btn-primary' onclick='selectSkill(this,2);' > AngularJS</span>  
+		<span class='btn btn-primary' onclick='selectSkill(this,3);' > NodeJS</span>  
+		<span class='btn btn-primary' onclick='selectSkill(this,4);' > Bootstrap</span>  
+		<span class='btn btn-primary' onclick='selectSkill(this,5);' > PHP</span>  
+	</p>
+	<hr/>
+	<h4>Selected Skills</h4>
+	<p class='selected-skills'></p>
+	<input type='hidden' class='form-control' name='selected-skills' id='skills-intro' />
+</div> 
+<div id='section-5' class='sections'> 
+	<div class="row">
+		 Give Some Suggestions here!
+	</div>
+</div> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+$('#myModal').modal({show:true});   
+$('.sections').hide();       
+skipThisSection(1); 
+$('.progress-bar').hide();
+ 
+function openFILEINPUT(){ 
+    $("#choose_picture_input").click();
+} 
+function uploadPICImmediately(ele){ 
+	var data = new FormData();  
+	jQuery.each(ele.files, function(i, file) { 
+		data.append('file', file);
+	});  
+	data.append('Update','AboutUser'); 
+	$(".image-upload-col").css('background','url("load.gif")');
+	$(".image-upload-col").css('background-size','20% 30%');
+	$(".image-upload-col").css('background-repeat','no-repeat');
+	$(".image-upload-col").css('background-position','center');
+	$.ajax({
+		data:data,
+		type:"POST",
+		cache: false,
+		contentType: false,
+		processData: false, 
+		url:"",
+		success:function(res){   
+			res=res.replace('null',''); 
+			$(".image-upload-col").css('background',res);
+			$(".image-upload-col").css('background-size','55% 100%');
+			$(".image-upload-col").css('background-repeat','no-repeat');
+			$(".image-upload-col").css('background-position','center');
+		}
+	});
+}
+function skipThisSection(a){ 
+	if(a>6)
+		return false; 
+	if(a==6)
+		nextTabToSave(a,'finish');
+	
+	$('.modal-body').html('<center><br/><h4 class="text-warning">Please Wait We are getting some Information for you</h4><br/><img src="load.gif" style="heigt:50px;weight:50px;" /></center>');
+	// showing some feel for the user
+	setTimeout(function(){nextFunc();},500);
+	var valuesToBeSaved='';
+	var nextFunc=function(){
+		$('#profile-next-button').prop( "onclick", null );
+		$('#profile-skip-button').prop( "onclick", null );
+		
+		if(a==1){
+			$('#header-info').html("<h4>Getting Started!</h4>");
+			valuesToBeSaved='CompanyDetails';
+			$('#current-info-bar').show().addClass('active');
+		}
+		else if(a==2){
+			$('#header-info').html("<h4>How do we Contact you</h4>");
+			valuesToBeSaved='ContactDetails';
+			$('#contact-bar').show().addClass('progress-bar-warning active');
+			$('#current-info-bar').show();
+			$('#percentOfComplete').html('20%');
+		}
+		else if(a==3){
+			$('#header-info').html("<h4>More About you</h4>");
+			valuesToBeSaved='AboutUser';
+			$('#about-bar').show().addClass('active progress-bar-success');
+			$('#contact-bar').show();
+			$('#current-info-bar').show();
+			$('#percentOfComplete').html('40%');
+		}
+		else if(a==4){
+			$('#header-info').html("<h4>Tell Us About your Skills</h4>");
+			valuesToBeSaved='Skills';
+			$('#skill-bar').show().addClass('active progress-bar-danger');
+			$('#about-bar').show();
+			$('#contact-bar').show();
+			$('#current-info-bar').show();
+			$('#percentOfComplete').html('60%');
+		}
+		else if(a==5){
+			$('#header-info').html("<h4>Some Suggested Users for you to Follow</h4>");
+			valuesToBeSaved='SuggestedMembers';
+			$('#network-bar').show().addClass('active');
+			$('#skill-bar').show();
+			$('#about-bar').show();
+			$('#contact-bar').show();
+			$('#current-info-bar').show();
+			$('#percentOfComplete').html('80%');
+			$('#profile-next-button').html("Done");
+		}
+		 
+		var aaa=$('#section-'+a).html(); 
+		$('.modal-body').html(aaa); 
+		$('#profile-next-button').attr( "onclick", "nextTabToSave("+(a+1)+",'"+valuesToBeSaved+"')" );
+		$('#profile-skip-button').attr( "onclick", "skipThisSection("+(a+1)+")" );
+		if(valuesToBeSaved==='Goto Dashboard'){
+			$('#profile-next-button').html("Finish");
+			//$('#profile-skip-button').hide();
+		}
+	}
+}
+function nextTabToSave(a,valuesToBeSaved){ 
+	 
+	if(a==6)
+		skipThisSection(a);
+	if(valuesToBeSaved==='CompanyDetails'){
+		$current_company=$('#current_company').val();
+		$current_role=$('#current_role').val();
+		$data="Company="+$current_company+"&Role="+$current_role+"&Update=CurrentCompanyAndRole";
+		console.log($data);
+		$.ajax({
+			data:$data,
+			type:"POST", 
+			url:"",
+			success:function(res){ 
+				console.log(res);
+				skipThisSection(a);
+			}
+		})
+	}
+	else if(valuesToBeSaved==='ContactDetails'){
+		var tempValues=new Array();
+		var ContactDetails=new Array();
+		$('.modal-body').find('.form-control').each(function(){
+			tempValues.push($(this).val());
+		})
+		for(var i=0;i<tempValues.length;i++){
+			if(tempValues[i]!=''){
+				ContactDetails.push(tempValues[i]);
+			}
+		}  
+		$.ajax({ 
+			type:"POST", 
+			url:"",
+			success:function(res){ 
+				console.log(res);
+				skipThisSection(a);
+			}
+		})
+	}
+	else if(valuesToBeSaved==='AboutUser'){
+		 
+		$.ajax({ 
+			type:"POST",
+			cache: false,
+			contentType: false,
+			processData: false,
+			url:"",
+			success:function(res){  
+				skipThisSection(a);
+			}
+		})
+	}
+	else if(valuesToBeSaved==='Skills'){
+		 
+		$.ajax({
+			 
+			type:"POST",
+			url:"",
+			success:function(res){ 
+				console.log(res);
+				skipThisSection(a);
+			}
+		})
+	}
+	
+}
+function selectSkill(ele,skill_id){
+	$(ele).prop('onclick',null); 
+	$(ele).prop('class',null); 
+	
+	$skills=$('#skills-intro').val();
+	
+	if($skills!='')
+		var skills=$skills+','+skill_id;		
+	else 
+		var skills=skill_id;
+	
+	$('#skills-intro').val(skills); 
+	$('.selected-skills').append('<span onclick="removeSkill(this,'+skill_id+')" class="btn btn-success selected_skills">'+$(ele).html()+'</span>');
+	console.log($('#skills-intro').val());
+	$(ele).hide();
+}
+function removeSkill(ele,skill_id){
+	$(ele).prop('onclick',null); 
+	$(ele).prop('class',null);  
+	
+	var old_skills=$("#skills-intro").val();  
+	var latest_skills=old_skills.replace(skill_id,'');
+	latest_skills=latest_skills.replace(',,',',');
+	$("#skills-intro").val(latest_skills); 
+	
+	if($skills!='')
+		var skills=$skills+','+skill_id;		
+	else 
+		var skills=skill_id;
+	 
+	$(ele).attr('onclick','selectSkill(this,'+skill_id+')');
+	$(ele).attr('class','btn btn-primary');  
+	$('.existing-skills').append(ele);
+	$(".selected_skills").filter(function() {
+		return $(this).html() === $(ele).html();
+	}).remove(); 
+}
+function showTheSection(ele,tab){
+	$('.progress-bar').attr('class','progress-bar');
+	$(ele).attr('class','progress-bar progress-bar-warning progress-bar-striped active'); 
+	skipThisSection(tab);
+} 
+</script> 
